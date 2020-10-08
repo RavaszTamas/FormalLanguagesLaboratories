@@ -1,0 +1,69 @@
+
+
+operators = ['osszead', 'kivon', 'oszt', 'szoroz', 'modulo', 'nemegyenlo', 'egyenlo', 'nagyobbvagyegyenlo',
+ 'kisebbvagyegyenlo', 'kisebb', 'nagyobb', 'novel, 'csokkent']
+
+separator = [ '[',']' ,'(',')', ';' ,' ', '\t', '\n' ]
+
+keyword = [
+'ha', 
+'kulonben', 
+'karakter', 
+'karakterlanc', 
+'amig', 
+'boolean', 
+'egesz', 
+'tomb', 
+'dupla', 
+'visszater', 
+'ismeteld', 
+'Kezd', 
+'Vegez', 
+'allj', 
+'valassz', 
+'eset', 
+'alapertelmezett'] 
+
+identifier 0
+constant 1
+[ 2
+] 3
+{ 4
+} 5
+( 6
+) 7
+; 8
+, 9
+osszead 10
+kivon 11
+oszt 12
+szoroz 13
+modulo 14
+nemegyenlo 15
+egyenlo 16
+nagyobbvagyegyenlo 17
+kisebbvagyegyenlo 18
+kisebb 19
+nagyobb 20
+novel 21
+csokkent 22
+ha 23
+kulonben 24
+karakter 25
+karakterlanc 26
+amig 27
+boolean 28
+egesz 29
+tomb 30
+dupla 31
+return 32
+ismeteld 33
+Kezd 34
+Vegez 35
+allj 36
+valassz 37
+eset 38
+alapertelmezett 39
+konstans 40
+
+
