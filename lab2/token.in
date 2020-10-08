@@ -3,7 +3,7 @@
 operators = ['osszead', 'kivon', 'oszt', 'szoroz', 'modulo', 'nemegyenlo', 'egyenlo', 'nagyobbvagyegyenlo',
  'kisebbvagyegyenlo', 'kisebb', 'nagyobb', 'novel, 'csokkent']
 
-separator = [ '[',']' ,'(',')', ';' ,' ', '\t', '\n' ]
+separator = [ '[',']' ,'(',')',':', ';' ,' ', '\t', '\n' ]
 
 keyword = [
 'ha', 

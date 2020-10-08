@@ -7,11 +7,8 @@ Alphabet:
 1.Lexic:
 	a. Special Symbols
 		-operators: osszead(+) kivon(-) oszt(/) szoroz(*) modulo (%) nemegyenlo(!=) egyenlo(==) 
-					nagyobbvagyegyenlo(>=) kisebbvagyegyenlo(<=) kisebb(<) nagyobb(>) novel(++) csokkent(--)
-		-assignment: kapja(=)
-		-separator:[] () ; space \t \n
-		-input: beolvas( read )
-		-output: kiir( print )
+					nagyobbvagyegyenlo(>=) kisebbvagyegyenlo(<=) kisebb(<) nagyobb(>) novel(++) csokkent(--) kapja(=)
+		-separator:[] () {} : ; space \t \n
 		-reserwed words/keywords:
 			ha ( if )
 			kulonben ( else )
@@ -31,6 +28,8 @@ Alphabet:
 			eset ( case )
 			alapertelmezett ( default )
 			konstans ( const )
+			kiir( print )
+			beolvas( read )
 	b. Identifiers
 		-a sequence of letters and digits, such that the first character is a letter, the rule is:
 			identifier = letter {( letter | digit)}

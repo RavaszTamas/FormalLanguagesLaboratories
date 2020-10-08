@@ -9,11 +9,10 @@ Syntactical rules:
 	compoundstatment = "Kezd" statementlist "Vege"
 	simplestatement = assignment | iostatement
 	assignment = identifier "kapja" expression 
-	expression = expression "osszead" term | term
-	term = term "*" factor | factor
+	expression = expression ("osszead"|"kivon") term | term
+	term = term ("szoroz"|"osztas") factor | factor
 	factor = "(" expression ")" | identifier	
 	operation = "osszead" | "kivon" | "oszt" | "szoroz" |  "modulo" 
-	term = identifier | nr | \" karakter{karakter} \"
 	iostatement = ("olvas" | "kiir" )  identifier ";"
 	structuredtatement = ifstatement | whilestatement | forstatement | switchstmt | casestatement
 	ifstatement = "ha"  condition  statement ["kulonben" statement]
