@@ -27,3 +27,4 @@ b) lexical rules:
      letter = "A" | "B" |...| "Z" | "a" | "b" | ... | "z"
       digit = "0" | "1" |...| "9"
    relation = "nemegyenlo" "egyenlo" "nagyobbvagyegyenlo" "kisebbvagyegyenlo" "kisebb" "nagyobb"
+//
