@@ -1,5 +1,5 @@
 I did the first laboratory in hungarian, I have added hints in paranteses what each thing means ( equivalent to C++)
-
+//Rares's comment: i love the idea, it's nice that it has the eng equivalent :D. looks good
 Alphabet:
 	Upper (A-Z) and lower case letters (a-z) of the English alphabet.
 	The underline charater '_'
