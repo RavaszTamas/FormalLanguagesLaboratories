@@ -1,5 +1,6 @@
 from models.symbol_table.SymbolTable import SymbolTable
 
+#Rares's Review: clean and straight-forward implementation
 
 class Node:
     """
@@ -31,7 +32,8 @@ class SymbolTableBinarySearchTree(SymbolTable):
         """
         current = self.__root
         parent = None
-
+        
+        #Rares: this part might be useful in some other parts in the future, maybe it could become a separate function (getCurrent(token)?)
         while current is not None and current.value != token:
             parent = current
             if token < current.value:
