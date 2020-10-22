@@ -3,11 +3,14 @@ Kezd
 	olvas a;
 	olvas b;
 	olvas c;
-	ha a nagyobb b
-		 d kapja a:
-	kulonben:
-		d kapja b
-	ha c nagyobb d:
-		d kapja c
-	kiir d
-Vege
+	ha a nagyobb b{
+		 d kapja a;
+	}
+	kulonben{
+		d kapja b;
+	}
+	ha c nagyobb d{
+		d kapja c;
+	}
+	kiir(d)
+Vegez

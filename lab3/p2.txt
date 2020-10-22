@@ -7,4 +7,4 @@ Kezd
 	kiir(first_half);
 	kiir(second_half);
 
-Vege
+Vegez

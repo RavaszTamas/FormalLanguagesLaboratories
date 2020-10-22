@@ -2,11 +2,10 @@
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from models.Scanner import Scanner
 from models.token import separators, all_items, codification
 from models.ProgramInternalForm import ProgramInternalForm
-from models.Scanner import token_generator, is_identifier, is_constant
 from models.symbol_table.SymbolTableHashTable import SymbolTableHashTable
-
 
 def scanTheFile():
     constant_symbol_table = SymbolTableHashTable()
@@ -17,16 +16,18 @@ def scanTheFile():
     file_name_to_read = input('enter the name of the file in the program folder:')
     line_index = 1
 
+    scanner = Scanner()
+
     with open(file_name_to_read, 'r') as file:
         for line in file:
-            tokens = [token for token in token_generator(line, line_index)]
+            tokens = [token for token in scanner.token_generator(line, line_index)]
             for token in tokens:
                 if token in all_items:
                     pif.add(token, -1)
-                elif is_identifier(token):
+                elif scanner.is_identifier(token):
                     id = identifier_symbol_table.pos(token)
                     pif.add(codification['identifier'], id)
-                elif is_constant(token):
+                elif scanner.is_constant(token):
                     id = constant_symbol_table.pos(token)
                     pif.add(codification['constant'], id)
                 else:
