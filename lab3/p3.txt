@@ -1,0 +1,16 @@
+Kezd
+	egesz a,b, c;
+	beolvas a;
+	beolvas b;
+	amig  a is not 0 :
+		ures kapja second_number;
+		second_number kapja first_number modulo second_number;
+		first_number kapja ures;
+	amig vege
+	erdemeny first_number
+
+	ha a egyenlo 1:
+		kiir "relative primes"
+	kulonben
+		kiir "not relative primes"
+Vege

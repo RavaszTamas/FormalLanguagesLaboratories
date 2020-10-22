@@ -1,0 +1,8 @@
+Kezd
+	egesz $money;
+	dupla 1yeartime = 365;
+	dupla #_interest_rate_#;
+	read $money ;
+	beolvas #_interest_rate_# ;
+	kiir $money szoroz ( 1 osszead #_interest_rate_# szoroz 1yeartime);
+Vegez
