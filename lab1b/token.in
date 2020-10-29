@@ -1,28 +1,15 @@
 
 
-operators = ['osszead', 'kivon', 'oszt', 'szoroz', 'modulo', 'nemegyenlo', 'egyenlo', 'nagyobbvagyegyenlo',
- 'kisebbvagyegyenlo', 'kisebb', 'nagyobb', 'novel, 'csokkent']
+operators = ['osszead', 'kivon', 'szoroz', 'oszt', 'modulusz', 'kisebb', 'kisebbvagyeegyenlo', 'egyenlo',
+             'nagyobbvagyegyenlo', 'nagyobb',
+             'nemegyenlo', 'novel', 'csokken', 'kapja']
 
-separator = [ '[',']' ,'(',')',':', ';' ,' ', '\t', '\n' ]
+separator = [ '[',']', '{', '{' ,'(',')',':', ';' ,' ', '\t', '\n' ]
 
 keyword = [
-'ha', 
-'kulonben', 
-'karakter', 
-'karakterlanc', 
-'amig', 
-'boolean', 
-'egesz', 
-'tomb', 
-'dupla', 
-'visszater', 
-'ismeteld', 
-'Kezd', 
-'Vegez', 
-'allj', 
-'valassz', 
-'eset', 
-'alapertelmezett'] 
+'ha', 'kulonben', 'karakter', 'karakterlanc', 'amig', 'boolean',
+                 'egesz', 'tomb', 'dupla', 'visszater', 'ismeteld', 'Kezd', 'Vegez',
+                 'allj', 'valassz', 'eset', 'alapertelmezett', 'konstans'] 
 
 identifier 0
 constant 1

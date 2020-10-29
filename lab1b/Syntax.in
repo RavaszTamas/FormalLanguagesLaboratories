@@ -1,25 +1,25 @@
 Syntactical rules:
 	program = compoundstatment
+	compoundstatment = "Kezd" statementlist "Vegez"
 	statementlist = statement ";" {statementlist}
 	statement = declarationlist | simplestatement | structuredtatement
 	declarationlist = type identifier{","identifier}";"	
 	type = primarytypes | arraytype
 	primarytypes = “egesz” | "dupla" | "karakter" | "boolean"
 	arraytype = primarytipes "[" nr "]"
-	compoundstatment = "Kezd" statementlist "Vege"
 	simplestatement = assignment | iostatement
-	assignment = identifier "kapja" expression 
+	assignment = identifier "kapja" expression ";"
 	expression = expression ("osszead"|"kivon") term | term
 	term = term ("szoroz"|"osztas") factor | factor
 	factor = "(" expression ")" | identifier	
 	operation = "osszead" | "kivon" | "oszt" | "szoroz" |  "modulo" 
 	iostatement = ("olvas" | "kiir" )  identifier ";"
 	structuredtatement = ifstatement | whilestatement | forstatement | switchstmt | casestatement
-	ifstatement = "ha"  condition  statement ["kulonben" statement]
+	ifstatement = "ha"  "(" condition ")" "{" statement "}" ["kulonben" "{" statement "}"]
 	condition = expression relation expression
-	whilestatement = "amig" condition compoundstatment 
-	forstatement = "ismeteld" "(" assignment; condition;  ")" statement
-	switchstmt = "valassz" "(" condition ")" casestatement{casestatement} "default" ":" statementlist 
+	whilestatement = "amig" "(" condition ")" "{" statementlist "}" 
+	forstatement = "ismeteld" "(" [statement]; [statement];[statement] ")" "{" statement "}"
+	switchstmt = "valassz" "(" condition ")" casestatement {casestatement} "default" ":" statementlist 
 	casestatement = "eset" ":" statementlist "allj;"
 
 b) lexical rules:

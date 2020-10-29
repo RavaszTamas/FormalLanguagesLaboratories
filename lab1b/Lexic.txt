@@ -31,7 +31,7 @@ Alphabet:
 			kiir( print )
 			beolvas( read )
 	b. Identifiers
-		-a sequence of letters and digits, such that the first character is a letter, the rule is:
+		-a sequence of letters and digits, such that the first character is a letter, the rule is, must not be longer than 256 characters:
 			identifier = letter {( letter | digit)}
 			letter = "A" | "B" | "C" | ... | "Z" | "a" | "b" | ... | "z"
 			digit = "0" | "1" | ... | "9"
