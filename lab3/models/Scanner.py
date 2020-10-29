@@ -9,6 +9,9 @@ class Scanner():
         return re.match(r'^[a-zA-Z]([a-zA-Z]|[0-9]|_){,256}$', token) is not None
 
 
+    #Rares review:
+    # maybe I don't understand this to its full extent, but it's so cool because it doesn't look like it treats letters
+    # and it does, nice
     def is_constant(self,token):
         return re.match(r'^(0|[+-]?([0-9]*[.])?[0-9]+|[\+\-]?[1-9][0-9]*)$|^\'.\'$|^\".*\"$', token) is not None
 
