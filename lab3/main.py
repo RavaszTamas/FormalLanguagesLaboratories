@@ -31,7 +31,7 @@ def scanTheFile():
                     id = constant_symbol_table.pos(token)
                     pif.add(codification['constant'], id)
                 else:
-                    raise Exception('Lexical error: Unknown token ' + token + ' at line ' + str(line_index))
+                    raise Exception('Lexical error: Unknown/Invalid token ' + token + ' at line ' + str(line_index))
             line_index += 1
 
 
