@@ -21,7 +21,6 @@ def scanTheFile():
     with open(file_name_to_read, 'r') as file:
         for line in file:
             tokens = [token for token in scanner.token_generator(line, line_index)]
-            print(tokens)
             for token in tokens:
                 if token in all_items:
                     pif.add(token, -1)
