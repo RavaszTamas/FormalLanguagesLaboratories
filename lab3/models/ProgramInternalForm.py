@@ -1,4 +1,4 @@
-
+#review: looks good
 class ProgramInternalForm():
     def __init__(self):
         self.__contentOfFile = []
