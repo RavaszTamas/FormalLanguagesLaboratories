@@ -10,7 +10,7 @@ class Scanner():
 
 
     def is_constant(self,token):
-        return re.match(r'^(0|[+-]?([0-9]*[.])?[0-9]+|[\+\-]?[1-9][0-9]*)$|^\'.\'$|^\".*\"$', token) is not None
+        return re.match(r'^(0|[+-]?([0-9]*[.])?[0-9]+|[\+\-]?[1-9][0-9]*)$|^\'\\.\'$|^\'.\'$|^\".*\"$', token) is not None
 
 
     def is_escaped_quotation_mark(self,line, index):
@@ -34,6 +34,18 @@ class Scanner():
 
         return token, index
 
+    def get_char(self,line, index):
+        token = ''
+        number_of_apostrophes = 0
+
+        while index < len(line) and number_of_apostrophes < 2:
+            if line[index] == '\'' and not self.is_escaped_quotation_mark(line, index):
+                number_of_apostrophes += 1
+            token += line[index]
+            index += 1
+
+        return token, index
+
 
     def token_generator(self,line, line_index):
         tokens = []
@@ -46,7 +58,16 @@ class Scanner():
                 token, index = self.get_string(line, index)
                 if token[-1] != '"':
                     raise Exception(
-                        "Syntax error, string is not closed! at line " + line_index + " position " + index + "\n")
+                        "Syntax error, string is not closed! at line " + str(line_index) + " position " + str(index) + "\n")
+                tokens.append(token)
+                token = ''
+            elif line[index] == '\'':
+                if token:
+                    tokens.append(token)
+                token, index = self.get_char(line, index)
+                if token[-1] != '\'':
+                    raise Exception(
+                        "Syntax error, character is not closed! at line " + str(line_index) + " position " + str(index) + "\n")
                 tokens.append(token)
                 token = ''
             elif line[index] in separators:

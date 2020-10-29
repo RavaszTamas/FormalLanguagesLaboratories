@@ -1,4 +1,5 @@
 Kezd
+    karakterlanc a kapja "asd"
 	egesz $money;
 	dupla 1yeartime = 365;
 	dupla #_interest_rate_#;

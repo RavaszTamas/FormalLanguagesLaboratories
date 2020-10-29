@@ -3,13 +3,13 @@ Kezd
 	olvas a;
 	olvas b;
 	olvas c;
-	ha a nagyobb b{
+	ha (a nagyobb b){
 		 d kapja a;
 	}
 	kulonben{
 		d kapja b;
 	}
-	ha c nagyobb d{
+	ha (c nagyobb d){
 		d kapja c;
 	}
 	kiir(d)

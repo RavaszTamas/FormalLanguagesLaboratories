@@ -21,6 +21,7 @@ def scanTheFile():
     with open(file_name_to_read, 'r') as file:
         for line in file:
             tokens = [token for token in scanner.token_generator(line, line_index)]
+            print(tokens)
             for token in tokens:
                 if token in all_items:
                     pif.add(token, -1)
@@ -31,7 +32,7 @@ def scanTheFile():
                     id = constant_symbol_table.pos(token)
                     pif.add(codification['constant'], id)
                 else:
-                    raise Exception('Unknown token ' + token + ' at line ' + str(line_index))
+                    raise Exception('Lexical error: Unknown token ' + token + ' at line ' + str(line_index))
             line_index += 1
 
 
@@ -49,9 +50,6 @@ def scanTheFile():
             for item in bucket:
                 file.write(str(item[0]) + " -> " + str(item[1]) + "\n")
 
-    print('\n\nCodification table: ')
-    for e in codification:
-        print(e, " -> ", codification[e])
 
 
 if __name__ == '__main__':
