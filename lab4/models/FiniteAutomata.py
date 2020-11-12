@@ -17,6 +17,11 @@ class FiniteAutomata:
             self.q0 = self.processTheLine(file_to_read.readline())[0]
             self.F = self.processTheLine(file_to_read.readline())
 
+        if self.q0 not in self.Q:
+            raise Exception("Initial state not in set of states")
+        for item in self.F:
+            if item not in self.Q:
+                raise Exception("One of the final states is not in the FA")
         self.createDictionaryForTransitions()
 
     def createDictionaryForTransitions(self):
