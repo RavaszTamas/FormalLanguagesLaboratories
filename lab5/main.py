@@ -1,5 +1,6 @@
 from models.FA.FiniteAutomata import FiniteAutomata
 from models.Grammar.Grammar import Grammar
+from models.Parser.Parser import Parser
 from models.Scanner.Scanner import Scanner
 from models.Scanner.token import all_items, codification
 from models.Scanner.ProgramInternalForm import ProgramInternalForm
@@ -142,4 +143,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    grammar = Grammar.fromFile("g1.txt")
+    parser = Parser(grammar)
+    #main()

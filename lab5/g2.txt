@@ -1,6 +1,6 @@
 N = "program"  | "additive" | "multiplicative" | "compoundstatement" | "statementlist" | "statement" | "declarationlist" | "type" | "primarytypes" | "arraytype" | "simplestatement" | "assignment" | "expression" | "term" | "factor" | "operation" | "iostatement" | "structuredtatement" | "ifstatement" | "condition" | "whilestatement" | "forstatement" | "switchstmt" | "casestatement"
 E =  "Kezd" | "identifier" | "ha" | "kulonben" | "allj" | "valassz" | "eset" | "ismeteld" | "amig" | "constant" | "Vegez" | "default" | ";" | "," | "egesz" | "dupla" | "karakter" | "boolean" | "(" | ")" | "[" | "]" | "kapja" | "osszead" | "kivon" | "szoroz" | "osztas" | "modulo" | "nemegyenlo" | "egyenlo" | "nagyobbvagyegyenlo" | "kisebbvagyegyenlo" | "kisebb" | "nagyobb"
-S = "S"
+S = "program"
 P =
 program -> compoundstatement
 compoundstatement -> Kezd statementlist Vegez

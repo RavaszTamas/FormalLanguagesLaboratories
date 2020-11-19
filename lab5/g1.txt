@@ -1,5 +1,7 @@
-N = "S"
-E = "a" | "b" | "c"
+N = "S" | "A" | "B"
+E = "a" | "b" | "c" | "epsilon"
 S = "S"
 P =
-S -> b S | a S b | c
+S -> a A | B | epsilon
+A -> a A | c B
+B -> c
