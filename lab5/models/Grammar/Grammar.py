@@ -1,3 +1,6 @@
+import codecs
+
+
 class Grammar:
 
     @staticmethod
@@ -24,7 +27,7 @@ class Grammar:
 
     @staticmethod
     def fromFile(fileName):
-        with open(fileName) as file:
+        with codecs.open(fileName,'r',encoding='utf8') as file:
             N = Grammar.processTheLine(file.readline())
             E = Grammar.processTheLine(file.readline())
             S = Grammar.processTheLine(file.readline())

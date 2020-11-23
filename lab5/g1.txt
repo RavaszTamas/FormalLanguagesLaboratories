@@ -1,7 +1,8 @@
-N = "S" | "A" | "B"
-E = "a" | "b" | "c" | "epsilon"
+N = "S" | "A" | "B" | "C"
+E = "a" | "b" | "c" | "ɛ" | "int" | "(" | ")" | "+" | "*"
 S = "S"
 P =
-S -> a A | B | epsilon
-A -> a A | c B
-B -> c
+S -> A B
+A -> ( S ) | int C
+B -> + S | ɛ
+C -> * A | ɛ

@@ -28,8 +28,6 @@ class Parser:
                 for production in self.grammar.getProductsForNonTerminal(nonTerminal):
                     productionElements = production.split()
                     if productionElements[0] in self.grammar.getNonTerminals() and productionElements[0] in self.firstSet:
-                        print(self.firstSet[nonTerminal])
-                        print(self.firstSet[productionElements[0]])
                         if not self.firstSet[productionElements[0]].issubset(self.firstSet[nonTerminal]):
                             self.firstSet[nonTerminal] = self.firstSet[nonTerminal].union(self.firstSet[productionElements[0]])
                             modified = True
