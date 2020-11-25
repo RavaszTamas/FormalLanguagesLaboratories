@@ -1,5 +1,7 @@
 
 #LL(1)
+import copy
+
 
 class Parser:
 
@@ -37,41 +39,36 @@ class Parser:
 
     def constructFollow(self):
         for nonTerminal in self.grammar.getNonTerminals():
-            initial = set()
             if nonTerminal == self.grammar.getStartingSymbol()[0]:
-                initial.add("$")
-                self.followSet[nonTerminal] = initial
+                self.followSet[nonTerminal] = set("ɛ")
             else:
-                self.followSet[nonTerminal] = initial
+                self.followSet[nonTerminal] = set()
 
-        for nonTerminal in self.grammar.getNonTerminals():
-            follow = []
-            found = False
-            for production in self.grammar.getProductsForNonTerminal(nonTerminal):
-                rhs = production.split()
-                for elem in range(0,len(rhs),1):
-                    if rhs[elem] == nonTerminal and found == False:
-                        found = True
-                    if found == True and elem + 1 < len(rhs):
-                        follow.append(rhs[elem+1])
-                follow.append("")
-                for f in follow:
-                    if f == "":
-                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(
-                            {nonTerminal})
-                        break
-                    else:
-                        if f in self.grammar.getTerminals():
-                            self.followSet[nonTerminal] = self.followSet[nonTerminal].union({f})
-                            break
-                        else:
-                            if "ɛ" in self.firstSet[f]:
-                                firstFCopy = self.firstSet[f]
-                                firstFCopy.remove("ɛ")
-                                self.followSet[nonTerminal] = self.followSet[nonTerminal].union(firstFCopy)
-                                break
+        modified = True
+        while modified:
+            modified = False
+            for nonTerminal in self.grammar.getNonTerminals():
+                for lhs, rhs in self.grammar.getProductions().items():
+                    for production in rhs:
+                        elements = production.split()
+                        if nonTerminal in elements:
+                            index = elements.index(nonTerminal)
+                            temp = elements[index + 1:]
+                            if len(temp) == 0:
+                                if not self.followSet[lhs].issubset(self.followSet[nonTerminal]):
+                                    self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.followSet[lhs])
+                                    modified = True
                             else:
-                                self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.firstSet[f])
-                                break
-
+                                if "ɛ" in self.firstSet[temp[0]]:
+                                    temporarySet = copy.deepcopy(self.firstSet[temp[0]])
+                                    temporarySet.remove('ɛ')
+                                    temporarySet = temporarySet.union(self.followSet[lhs])
+                                    if not temporarySet.issubset(self.followSet[nonTerminal]):
+                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(temporarySet)
+                                        modified = True
+                                else:
+                                    if not self.firstSet[temp[0]].issubset(self.followSet[nonTerminal]):
+                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(
+                                            self.firstSet[temp[0]])
+                                        modified = True
         print(self.followSet)
