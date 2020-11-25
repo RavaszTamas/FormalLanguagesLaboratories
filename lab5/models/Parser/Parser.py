@@ -37,16 +37,17 @@ class Parser:
 
     def constructFollow(self):
         for nonTerminal in self.grammar.getNonTerminals():
+            initial = set()
             if nonTerminal == self.grammar.getStartingSymbol()[0]:
-                self.followSet[nonTerminal] = {"$"}
+                initial.add("$")
+                self.followSet[nonTerminal] = initial
             else:
-                self.followSet[nonTerminal] = {}
+                self.followSet[nonTerminal] = initial
 
         for nonTerminal in self.grammar.getNonTerminals():
             follow = []
             found = False
             for production in self.grammar.getProductsForNonTerminal(nonTerminal):
-                #lhs = self.grammar.getProductions[production] need a first or default :(
                 rhs = production.split()
                 for elem in range(0,len(rhs),1):
                     if rhs[elem] == nonTerminal and found == False:
@@ -57,16 +58,16 @@ class Parser:
                 for f in follow:
                     if f == "":
                         self.followSet[nonTerminal] = self.followSet[nonTerminal].union(
-                            {"placeholder"})
+                            {nonTerminal})
                         break
                     else:
                         if f in self.grammar.getTerminals():
                             self.followSet[nonTerminal] = self.followSet[nonTerminal].union({f})
                             break
                         else:
-                            if "epsilon" in self.firstSet[f]:
+                            if "ɛ" in self.firstSet[f]:
                                 firstFCopy = self.firstSet[f]
-                                firstFCopy.remove("epsilon")
+                                firstFCopy.remove("ɛ")
                                 self.followSet[nonTerminal] = self.followSet[nonTerminal].union(firstFCopy)
                                 break
                             else:
