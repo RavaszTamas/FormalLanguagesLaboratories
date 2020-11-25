@@ -52,7 +52,7 @@ class Grammar:
         return self.P
 
     def getStartingSymbol(self):
-        return  self.S
+        return self.S
 
     def getProductsForNonTerminal(self,theNonTerminal):
         return self.P[theNonTerminal]

@@ -104,6 +104,7 @@ def print_grammar_menu():
 2. Set of Non-terminals
 3. Productions
 4. Production for a non-terminal
+5. Starting symbol
 0. Exit\n\n""")
 
 
@@ -123,13 +124,15 @@ def readTheGrammar():
         elif user_input == "4":
             inputNonterminal = input("Enter the non-terminal:")
             print(grammar.getProductsForNonTerminal(inputNonterminal))
+        elif user_input == "5":
+            print(grammar.getStartingSymbol()[0])
 
 def main():
 
     gram = Grammar.fromFile("g1.txt")
     while True:
         print(
-            "Enter 1 to parse any automata\nEnter 2 to perform scanning using the pre-existing automatas\nEnter 3 to preform a reading of a grammarEnter 0 to "
+            "Enter 1 to parse any automata\nEnter 2 to perform scanning using the pre-existing automatas\nEnter 3 to preform a reading of a grammar\nEnter 0 to "
             "exit")
         user_input = input(">>>").strip()
         if user_input == "1":
@@ -143,6 +146,6 @@ def main():
 
 
 if __name__ == '__main__':
-    grammar = Grammar.fromFile("g1.txt")
-    parser = Parser(grammar)
-    #main()
+    # grammar = Grammar.fromFile("g1.txt")
+    # parser = Parser(grammar)
+    main()
