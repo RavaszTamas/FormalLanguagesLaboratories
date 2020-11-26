@@ -136,6 +136,29 @@ class Parser:
         for item in self.parseTable.items():
             print(item)
 
-    def parseSequence(self):
-        pass
+    def parseSequence(self, w):
+        alfa = []
+        alfa.append("$")
+        for elem in w:
+            alfa.append(elem)
+        beta = []
+        beta.append(self.grammar.getStartingSymbol()[0])
+        beta.append("$")
+        pi = []
+        go = True
+        try:
+            while go:
+                elem = self.parseTable[(beta[-1],alfa[-1])]
+                if elem[0] == "acc":
+                    go = False
+                    print("Sequence accepted ")
+                elif elem[0] == "pop":
+                    alfa.pop()
+                    beta.pop()
+                else:
+                    beta.pop()
+                    beta.append(elem[0])
+                    pi.append(elem[1])
+        except KeyError:
+            raise KeyError("Not an LL(1) grammar")
 
