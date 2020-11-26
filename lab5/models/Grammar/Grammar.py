@@ -24,7 +24,8 @@ class Grammar:
                 if lhs not in result:
                     result[lhs] = []
                 result[lhs].append(value)
-                enumerated.append(((rhs,lhs),index))
+                enumerated.append(((lhs,value),index))
+                index +=1
         return result,enumerated
 
 
@@ -60,3 +61,6 @@ class Grammar:
 
     def getProductsForNonTerminal(self,theNonTerminal):
         return self.P[theNonTerminal]
+
+    def getEnumerated(self):
+        return self.enumeratedProdcutions
