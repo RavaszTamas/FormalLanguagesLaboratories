@@ -11,7 +11,7 @@ class Parser:
         self.followSet = {}
         self.constructFirst()
         self.constructFollow()
-
+        self.generateParseTable()
     def constructFirst(self):
         for terminal in self.grammar.getTerminals():
             self.firstSet[terminal] = {terminal}
@@ -46,7 +46,7 @@ class Parser:
                         if not concatResult.issubset(self.firstSet[nonTerminal]):
                             self.firstSet[nonTerminal] = self.firstSet[nonTerminal].union(self.firstSet[productionElements[0]])
                             modified = True
-        print(self.firstSet)
+        #print(self.firstSet)
 
     def generateConcatenationOfLengthOne(self,firstSet,secondSet):
         resultSet = set()
@@ -74,24 +74,36 @@ class Parser:
                 for lhs, rhs in self.grammar.getProductions().items():
                     for production in rhs:
                         elements = production.split()
-                        if nonTerminal in elements:
-                            index = elements.index(nonTerminal)
-                            temp = elements[index + 1:]
-                            if len(temp) == 0:
-                                if not self.followSet[lhs].issubset(self.followSet[nonTerminal]):
-                                    self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.followSet[lhs])
-                                    modified = True
-                            else:
-                                if "ɛ" in self.firstSet[temp[0]]:
-                                    temporarySet = copy.deepcopy(self.firstSet[temp[0]])
-                                    temporarySet.remove('ɛ')
-                                    temporarySet = temporarySet.union(self.followSet[lhs])
-
-                                    if not temporarySet.issubset(self.followSet[nonTerminal]):
-                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(temporarySet)
+                        temp = elements
+                        while nonTerminal in temp:
+                            try:
+                                index = temp.index(nonTerminal)
+                                temp = temp[index + 1:]
+                                if len(temp) == 0:
+                                    if not self.followSet[lhs].issubset(self.followSet[nonTerminal]):
+                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.followSet[lhs])
                                         modified = True
                                 else:
-                                    if not self.firstSet[temp[0]].issubset(self.followSet[nonTerminal]):
-                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.firstSet[temp[0]])
-                                        modified = True
-        print(self.followSet)
+                                    if "ɛ" in self.firstSet[temp[0]]:
+                                        temporarySet = copy.deepcopy(self.firstSet[temp[0]])
+                                        temporarySet.remove('ɛ')
+                                        temporarySet = temporarySet.union(self.followSet[lhs])
+
+                                        if not temporarySet.issubset(self.followSet[nonTerminal]):
+                                            self.followSet[nonTerminal] = self.followSet[nonTerminal].union(temporarySet)
+                                            modified = True
+                                    else:
+                                        if not self.firstSet[temp[0]].issubset(self.followSet[nonTerminal]):
+                                            self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.firstSet[temp[0]])
+                                            modified = True
+                            except ValueError:
+                                temp = []
+        #print(self.followSet)
+
+
+    def generateParseTable(self):
+        for item in self.grammar.getProductions():
+            print(item)
+
+    def parseSequence(self):
+        pass

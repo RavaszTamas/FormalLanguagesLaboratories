@@ -14,6 +14,8 @@ class Grammar:
     @staticmethod
     def processRules(linesOfRules):
         result = {}
+        enumerated = []
+        index = 1
         for rule in linesOfRules:
             lhs, rhs = rule.split('->')
             lhs = lhs.strip()
@@ -22,7 +24,8 @@ class Grammar:
                 if lhs not in result:
                     result[lhs] = []
                 result[lhs].append(value)
-        return result
+                enumerated.append(((rhs,lhs),index))
+        return result,enumerated
 
 
     @staticmethod
@@ -31,16 +34,17 @@ class Grammar:
             N = Grammar.processTheLine(file.readline())
             E = Grammar.processTheLine(file.readline())
             S = Grammar.processTheLine(file.readline())
-            P = Grammar.processRules(Grammar.processTheLineRule(''.join([line for line in file])))
-            return Grammar(N,E,P,S)
+            P,enumerated = Grammar.processRules(Grammar.processTheLineRule(''.join([line for line in file])))
+            return Grammar(N,E,P,S,enumerated)
 
 
 
-    def __init__(self,N,E,P,S):
+    def __init__(self,N,E,P,S,enumeratedProdcutions):
         self.N = N
         self.E = E
         self.P = P
         self.S = S
+        self.enumeratedProdcutions = enumeratedProdcutions
 
     def getNonTerminals(self):
         return self.N
