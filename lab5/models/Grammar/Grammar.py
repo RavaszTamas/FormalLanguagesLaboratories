@@ -5,11 +5,11 @@ class Grammar:
 
     @staticmethod
     def processTheLine(line):
-        return [value.strip().strip('"') for value in line.strip().split("=")[1].strip().split("|")]
+        return [value.strip().strip('"') for value in line.strip().split("=",1)[1].strip().split("|")]
 
     @staticmethod
     def processTheLineRule(line):
-        return [value.strip().strip('"') for value in line.strip().split("=")[1].strip().split("\n")]
+        return [value.strip().strip('"') for value in line.strip().split("=",1)[1].strip().split("\n")]
 
     @staticmethod
     def processRules(linesOfRules):

@@ -1,8 +1,10 @@
-N = "S" | "A" | "B" | "C"
-E = "a" | "b" | "c" | "ɛ" | "int" | "(" | ")" | "+" | "*"
+N = "S" | "T" | "C" | "E" | "R" | "I"
+E = "if" | "then" | "else" | "id" | "const" | "ɛ" | "=" | "<>" | ":="
 S = "S"
 P =
-S -> A B
-A -> ( S ) | int C
-B -> + S | ɛ
-C -> * A | ɛ
+S -> if C then I T
+T -> ɛ | else I
+C -> E R E
+E -> id | const
+R -> = | <>
+I -> id := E
