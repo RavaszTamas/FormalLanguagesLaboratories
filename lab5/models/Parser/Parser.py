@@ -1,5 +1,6 @@
+# LL(1)
+import copy
 
-#LL(1)
 
 class Parser:
 
@@ -28,49 +29,68 @@ class Parser:
             for nonTerminal in self.grammar.getNonTerminals():
                 for production in self.grammar.getProductsForNonTerminal(nonTerminal):
                     productionElements = production.split()
-                    if productionElements[0] in self.grammar.getNonTerminals() and productionElements[0] in self.firstSet:
-                        if not self.firstSet[productionElements[0]].issubset(self.firstSet[nonTerminal]):
+                    go = True
+                    for item in productionElements:
+                        if len(self.firstSet[item]) == 0:
+                            go = False
+                            break
+                    if go:
+                        concatResult = copy.deepcopy(self.firstSet[productionElements[0]])
+                        if 'ɛ' in concatResult:
+                            concatResult.remove('ɛ')
+
+                        for i in range(len(productionElements)):
+                                concatResult = self.generateConcatenationOfLengthOne(concatResult,productionElements[i])
+
+                        if not concatResult.issubset(self.firstSet[nonTerminal]):
                             self.firstSet[nonTerminal] = self.firstSet[nonTerminal].union(self.firstSet[productionElements[0]])
                             modified = True
-
         print(self.firstSet)
+
+    def generateConcatenationOfLengthOne(self,firstSet,secondSet):
+        resultSet = set()
+        for itemOne in firstSet:
+            for itemTwo in secondSet:
+
+                concatItem = (itemOne,itemTwo)
+                if concatItem[0] != 'ɛ':
+                    resultSet.add(concatItem[0])
+                else:
+                    resultSet.add(concatItem[1])
+        return resultSet
 
     def constructFollow(self):
         for nonTerminal in self.grammar.getNonTerminals():
             if nonTerminal == self.grammar.getStartingSymbol()[0]:
-                self.followSet[nonTerminal] = {"$"}
+                self.followSet[nonTerminal] = set("ɛ")
             else:
-                self.followSet[nonTerminal] = {}
+                self.followSet[nonTerminal] = set()
 
-        for nonTerminal in self.grammar.getNonTerminals():
-            follow = []
-            found = False
-            for production in self.grammar.getProductsForNonTerminal(nonTerminal):
-                #lhs = self.grammar.getProductions[production] need a first or default :(
-                rhs = production.split()
-                for elem in range(0,len(rhs),1):
-                    if rhs[elem] == nonTerminal and found == False:
-                        found = True
-                    if found == True and elem + 1 < len(rhs):
-                        follow.append(rhs[elem+1])
-                follow.append("")
-                for f in follow:
-                    if f == "":
-                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(
-                            {"placeholder"})
-                        break
-                    else:
-                        if f in self.grammar.getTerminals():
-                            self.followSet[nonTerminal] = self.followSet[nonTerminal].union({f})
-                            break
-                        else:
-                            if "epsilon" in self.firstSet[f]:
-                                firstFCopy = self.firstSet[f]
-                                firstFCopy.remove("epsilon")
-                                self.followSet[nonTerminal] = self.followSet[nonTerminal].union(firstFCopy)
-                                break
+        modified = True
+        while modified:
+            modified = False
+            for nonTerminal in self.grammar.getNonTerminals():
+                for lhs, rhs in self.grammar.getProductions().items():
+                    for production in rhs:
+                        elements = production.split()
+                        if nonTerminal in elements:
+                            index = elements.index(nonTerminal)
+                            temp = elements[index + 1:]
+                            if len(temp) == 0:
+                                if not self.followSet[lhs].issubset(self.followSet[nonTerminal]):
+                                    self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.followSet[lhs])
+                                    modified = True
                             else:
-                                self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.firstSet[f])
-                                break
+                                if "ɛ" in self.firstSet[temp[0]]:
+                                    temporarySet = copy.deepcopy(self.firstSet[temp[0]])
+                                    temporarySet.remove('ɛ')
+                                    temporarySet = temporarySet.union(self.followSet[lhs])
 
+                                    if not temporarySet.issubset(self.followSet[nonTerminal]):
+                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(temporarySet)
+                                        modified = True
+                                else:
+                                    if not self.firstSet[temp[0]].issubset(self.followSet[nonTerminal]):
+                                        self.followSet[nonTerminal] = self.followSet[nonTerminal].union(self.firstSet[temp[0]])
+                                        modified = True
         print(self.followSet)

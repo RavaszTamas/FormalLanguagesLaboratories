@@ -146,6 +146,6 @@ def main():
 
 
 if __name__ == '__main__':
-    # grammar = Grammar.fromFile("g1.txt")
-    # parser = Parser(grammar)
-    main()
+     grammar = Grammar.fromFile("g1.txt")
+     parser = Parser(grammar)
+    #main()
