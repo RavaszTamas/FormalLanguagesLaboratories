@@ -148,4 +148,5 @@ def main():
 if __name__ == '__main__':
      grammar = Grammar.fromFile("g1.txt")
      parser = Parser(grammar)
+     #parser.parseSequence(["a","*","(","a","+","a",")"])
     #main()

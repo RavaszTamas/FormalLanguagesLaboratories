@@ -1,10 +1,12 @@
-N = "S" | "T" | "C" | "E" | "R" | "I"
-E = "if" | "then" | "else" | "id" | "const" | "ɛ" | "=" | "<>" | ":="
+N = "S" | "A" | "B" | "C" | "D"
+E = "+" | "ɛ" | "*" | ")" | "(" | "a"
 S = "S"
 P =
-S -> if C then I T
-T -> ɛ | else I
-C -> E R E
-E -> id | const
-R -> = | <>
-I -> id := E
+S -> B A
+A -> + B A
+A -> ɛ
+B -> D C
+C -> * D C
+C -> ɛ
+D -> ( S )
+D -> a

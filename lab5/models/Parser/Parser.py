@@ -110,6 +110,7 @@ class Parser:
             elements = production[0][1].split()
             firstSet = self.firstSet[elements[0]]
             for element in firstSet:
+
                 if element != "ɛ":
                     if (production[0][0], element) not in self.parseTable:
                         self.parseTable[(production[0][0], element)] = (production[0][1], production[1])
@@ -120,7 +121,10 @@ class Parser:
                     followSetOfItem = self.followSet[production[0][0]]
                     for followElement in followSetOfItem:
                         if (production[0][0], followElement) not in self.parseTable:
-                            self.parseTable[(production[0][0],"$")] = (production[0][1], production[1])
+                            if followElement == "ɛ":
+                                self.parseTable[(production[0][0],"$")] = (production[0][1], production[1])
+                            else:
+                                self.parseTable[(production[0][0],followElement)] = (production[0][1], production[1])
                         else:
                             raise ValueError("Conflict at" + str((production[0][0], element)) + " " + self.parseTable[
                                 (production[0][0], element)] + ":" + str((production[0][1], production[1])))
@@ -133,32 +137,44 @@ class Parser:
 
         self.parseTable[("$","$")] = ("acc",-1)
 
-        for item in self.parseTable.items():
-            print(item)
+        # for item in self.parseTable.items():
+        #     print(item)
 
     def parseSequence(self, w):
         alfa = []
         alfa.append("$")
+        w.reverse()
         for elem in w:
-            alfa.append(elem)
+            if elem == "ɛ":
+                alfa.append("$")
+            else:
+                alfa.append(elem)
         beta = []
-        beta.append(self.grammar.getStartingSymbol()[0])
         beta.append("$")
+        beta.append(self.grammar.getStartingSymbol()[0])
         pi = []
         go = True
         try:
             while go:
+                print(alfa)
+                print(beta)
+                print(pi)
                 elem = self.parseTable[(beta[-1],alfa[-1])]
                 if elem[0] == "acc":
                     go = False
-                    print("Sequence accepted ")
                 elif elem[0] == "pop":
                     alfa.pop()
                     beta.pop()
                 else:
                     beta.pop()
-                    beta.append(elem[0])
+                    elems = elem[0].split()
+                    elems.reverse()
+                    for item in elems:
+                        if item != "ɛ":
+                            beta.append(item)
                     pi.append(elem[1])
         except KeyError:
             raise KeyError("Not an LL(1) grammar")
+
+        return pi
 
