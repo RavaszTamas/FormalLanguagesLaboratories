@@ -73,7 +73,8 @@ class Scanner():
             elif line[index] in separators:
                 if token:
                     tokens.append(token)
-                tokens.append(line[index])
+                if not (line[index] == '\n' or line[index] == ' ' or line[index] == '\t'):
+                    tokens.append(line[index])
                 index += 1
                 token = ''
             else:

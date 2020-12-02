@@ -13,8 +13,20 @@ class NodeParser:
         self.father = father
 
     def __str__(self):
-        return "Node " + self.id + ": " + self.value + " Father:" + str(None) if self.father is None else str(
-            self.father.id) + " Sibling:" + str(None) if self.sibling is None else str(self.sibling.id)
+        strToReturn = "Node " + str(self.id) + ": " + str(self.value) + " Father:"
+        if self.father is None:
+            strToReturn += " None "
+        else:
+            strToReturn += str(self.father.id)
+
+        strToReturn += " Sibling: "
+
+        if self.sibling is None:
+            strToReturn += " None "
+        else:
+            strToReturn += str(self.sibling.id)
+
+        return strToReturn
 
 
 class ParserOutput:
@@ -26,14 +38,15 @@ class ParserOutput:
     def constructTree(self, productions):
         count = 0
         while len(productions) != 0:
-            prod = self.__grammar.getEnumerated()[productions[-1]]
+            prod = self.__grammar.getEnumerated()[productions[0]-1]
+            productions.pop(0)
             father = NodeParser(count + 1, prod[0][0], None, None)
             count += 1
             sibling = None
             rules = prod[0][1].split()
             for rule in rules:
                 child = self.doesTheChildExist(rule)
-                if child == None:
+                if child is None:
                     child = NodeParser(count + 1, rule, sibling, father)
                     self.__nodes.append(child)
                     sibling = child
@@ -44,7 +57,7 @@ class ParserOutput:
 
     def doesTheChildExist(self, rule):
         for node in self.__nodes:
-            if node.value == rule and node.father == None:
+            if node.value == rule and node.father is None:
                 return node
         return None
 

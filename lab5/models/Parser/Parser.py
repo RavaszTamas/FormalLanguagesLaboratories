@@ -1,6 +1,8 @@
 # LL(1)
 import copy
 
+from models.Parser.ParserOutput import ParserOutput
+
 
 class Parser:
 
@@ -11,8 +13,10 @@ class Parser:
         self.parseTable = {}
         self.constructFirst()
         self.constructFollow()
-        self.generateParseTable()
-
+        try:
+            self.generateParseTable()
+        except ValueError as er:
+            print(er)
     def constructFirst(self):
         for terminal in self.grammar.getTerminals():
             self.firstSet[terminal] = {terminal}
@@ -48,7 +52,8 @@ class Parser:
                             self.firstSet[nonTerminal] = self.firstSet[nonTerminal].union(
                                 self.firstSet[productionElements[0]])
                             modified = True
-        # print(self.firstSet)
+        # for item in self.firstSet.items():
+        #     print(item)
 
     def generateConcatenationOfLengthOne(self, firstSet, secondSet):
         resultSet = set()
@@ -103,7 +108,8 @@ class Parser:
                                             modified = True
                             except ValueError:
                                 temp = []
-        # print(self.followSet)
+        # for item in self.followSet.items():
+        #     print(item)
 
     def generateParseTable(self):
         for production in self.grammar.getEnumerated():
@@ -115,8 +121,8 @@ class Parser:
                     if (production[0][0], element) not in self.parseTable:
                         self.parseTable[(production[0][0], element)] = (production[0][1], production[1])
                     else:
-                        raise ValueError("Conflict at" + str((production[0][0], element)) + " " + self.parseTable[
-                            (production[0][0], element)] + ":" + str((production[0][1], production[1])))
+                        raise ValueError("Conflict at (" + str(production[0][0])+","+ str(element) + ") " + str(self.parseTable[
+                            (production[0][0], element)]) + ":" + str((production[0][1], production[1])))
                 else:
                     followSetOfItem = self.followSet[production[0][0]]
                     for followElement in followSetOfItem:
@@ -126,8 +132,8 @@ class Parser:
                             else:
                                 self.parseTable[(production[0][0],followElement)] = (production[0][1], production[1])
                         else:
-                            raise ValueError("Conflict at" + str((production[0][0], element)) + " " + self.parseTable[
-                                (production[0][0], element)] + ":" + str((production[0][1], production[1])))
+                            raise ValueError("Conflict at (" + str(production[0][0]) + "," + str(element) + ") " + str(
+                                self.parseTable[(production[0][0], element)]) + ":" + str((production[0][1], production[1])))
 
         for terminal in self.grammar.getTerminals():
             if terminal == "ɛ":
@@ -156,9 +162,6 @@ class Parser:
         go = True
         try:
             while go:
-                print(alfa)
-                print(beta)
-                print(pi)
                 elem = self.parseTable[(beta[-1],alfa[-1])]
                 if elem[0] == "acc":
                     go = False
@@ -176,5 +179,9 @@ class Parser:
         except KeyError:
             raise KeyError("Not an LL(1) grammar")
 
+        output = ParserOutput(self.grammar)
+        print(pi)
+        output.constructTree(pi)
+        print(output)
         return pi
 

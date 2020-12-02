@@ -7,7 +7,7 @@ from models.Scanner.ProgramInternalForm import ProgramInternalForm
 from models.symbol_table.SymbolTableHashTable import SymbolTableHashTable
 
 
-def scanTheFile():
+def scanTheFile(file_name_to_read=None):
     constant_symbol_table = SymbolTableHashTable()
     identifier_symbol_table = SymbolTableHashTable()
 
@@ -22,11 +22,13 @@ def scanTheFile():
     automata_for_identifiers.parseFromFile("FA_Identifier.in")
     automata_for_integers.parseFromFile("FA_Integer.in")
 
-    file_name_to_read = input('enter the name of the file in the program folder:')
+    if file_name_to_read is None:
+        file_name_to_read = input('enter the name of the file in the program folder:')
 
     with open(file_name_to_read, 'r') as file:
         for line in file:
             tokens = [token for token in scanner.token_generator(line, line_index)]
+            print(tokens)
             for token in tokens:
                 if token in all_items:
                     pif.add(token, -1)
@@ -55,7 +57,7 @@ def scanTheFile():
     with open("ST_identifier.out", 'w') as file:
         for bucket in identifier_symbol_table.getContent():
             for item in bucket:
-                file.write(str(item[0]) + " -> " + str(item[1]) + "\n")
+                file.write("(" + str(item[0]) + "," + str(item[1]) + ")" + "\n")
 
 
 def print_menu():
@@ -105,6 +107,7 @@ def print_grammar_menu():
 3. Productions
 4. Production for a non-terminal
 5. Starting symbol
+6. Parse from file
 0. Exit\n\n""")
 
 
@@ -126,10 +129,12 @@ def readTheGrammar():
             print(grammar.getProductsForNonTerminal(inputNonterminal))
         elif user_input == "5":
             print(grammar.getStartingSymbol()[0])
+        elif user_input == "5":
+            filname = input("Enter the name of the file:")
+
 
 def main():
 
-    gram = Grammar.fromFile("g1.txt")
     while True:
         print(
             "Enter 1 to parse any automata\nEnter 2 to perform scanning using the pre-existing automatas\nEnter 3 to preform a reading of a grammar\nEnter 0 to "
@@ -146,7 +151,7 @@ def main():
 
 
 if __name__ == '__main__':
-     grammar = Grammar.fromFile("g1.txt")
-     parser = Parser(grammar)
-     #parser.parseSequence(["a","*","(","a","+","a",")"])
-    #main()
+    grammar = Grammar.fromFile("g1.txt")
+    parser = Parser(grammar)
+    parser.parseSequence(["a","*","(","a","+","a",")"])
+    # main()

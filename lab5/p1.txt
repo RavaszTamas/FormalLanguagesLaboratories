@@ -1,0 +1,16 @@
+Kezd
+	egesz a,b,c,d;
+	olvas a;
+	olvas b;
+	olvas c;
+	ha (a nagyobb b){
+		 d kapja a;
+	}
+	kulonben{
+		d kapja b;
+	}
+	ha (c nagyobb d){
+		d kapja c;
+	}
+	kiir(d);
+Vegez

@@ -1,12 +1,13 @@
-N = "program" | "integer" | "additive" | "multiplicative" | "compoundstatement" | "statementlist" | "statement" | "declarationlist" | "type" | "primarytypes" | "arraytype" | "simplestatement" | "assignment" | "expression" | "term" | "factor" | "operation" | "iostatement" | "structuredtatement" | "ifstatement" | "condition" | "whilestatement" | "forstatement" | "switchstmt" | "casestatement"
-E =  "Kezd" | "identifier" | "ha" | "kulonben" | "allj" | "valassz" | "eset" | "ismeteld" | "amig" | "constant" | "Vegez" | "default" | ";" | "," | "egesz" | "dupla" | "karakter" | "boolean" | "(" | ")" | "[" | "]" | "kapja" | "osszead" | "kivon" | "szoroz" | "oszt" | "modulo" | "nemegyenlo" | "egyenlo" | "nagyobbvagyegyenlo" | "kisebbvagyegyenlo" | "kisebb" | "nagyobb"
+N = "program" | "relation" |"identifierList" | "additive" | "multiplicative" | "compoundstatement" | "statementlist" | "statement" | "declarationlist" | "type" | "primarytypes" | "arraytype" | "simplestatement" | "assignment" | "expression" | "term" | "factor" | "operation" | "iostatement" | "structuredtatement" | "ifstatement" | "condition" | "whilestatement" | "forstatement" | "switchstmt" | "casestatement"
+E = "Kezd" | "{" | "}" | "identifier" | ":" | "," | "integer" | "olvas" | "kiir" | "ha" | "kulonben" | "allj" | "valassz" | "eset" | "ismeteld" | "amig" | "constant" | "Vegez" | "default" | ";" | "," | "egesz" | "dupla" | "karakter" | "boolean" | "(" | ")" | "[" | "]" | "kapja" | "osszead" | "kivon" | "szoroz" | "oszt" | "modulo" | "nemegyenlo" | "egyenlo" | "nagyobbvagyegyenlo" | "kisebbvagyegyenlo" | "kisebb" | "nagyobb"
 S = "program"
 P =
 program -> compoundstatement
 compoundstatement -> Kezd statementlist Vegez
 statementlist -> statement ; | statementlist
 statement -> declarationlist | simplestatement | structuredtatement
-declarationlist -> type identifier{,identifier};
+declarationlist -> type identifierList ;
+identifierList -> identifier , identifierList | identifier
 type -> primarytypes | arraytype
 primarytypes -> egesz | dupla | karakter | boolean
 arraytype -> primarytypes [ integer ]
@@ -18,13 +19,12 @@ factor -> ( expression ) | identifier
 operation -> additive | multiplicative
 additive -> osszead | kivon
 multiplicative -> oszt | szoroz |  modulo
-operation -> osszead | kivon | oszt | szoroz |  modulo
 iostatement -> olvas  identifier ; | kiir identifier ;
 structuredtatement -> ifstatement | whilestatement | forstatement | switchstmt | casestatement
 ifstatement -> ha  ( condition ) { statement } | ha  ( condition ) { statement } kulonben { statement }
 condition -> expression relation expression
 whilestatement -> amig ( condition ) { statementlist }
 forstatement -> ismeteld ( statement ; statement ; statement ) { statement }
-switchstmt -> valassz ( condition ) casestatement {casestatement} default : statementlist
+switchstmt -> valassz ( condition ) casestatement { casestatement } default : statementlist
 casestatement -> eset : statementlist allj ;
 relation -> nemegyenlo | egyenlo | nagyobbvagyegyenlo | kisebbvagyegyenlo | kisebb | nagyobb
