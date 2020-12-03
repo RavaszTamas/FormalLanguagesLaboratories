@@ -196,5 +196,4 @@ if __name__ == '__main__':
     # grammar = Grammar.fromFile("g1.txt")
     # parser = Parser(grammar)
     # output = parser.parseSequence(['a', '*', '(', 'a', '+', 'a', ')'])
-
     main()
