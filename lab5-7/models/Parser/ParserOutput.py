@@ -48,9 +48,9 @@ class ParserOutput:
                 child = self.doesTheChildExist(rule)
                 if child is None:
                     child = NodeParser(count + 1, rule, sibling, father)
-                    self.__nodes.append(child)
-                    sibling = child
                     count += 1
+                    sibling = child
+                    self.__nodes.append(child)
                 else:
                     child.father = father
             self.__nodes.append(father)

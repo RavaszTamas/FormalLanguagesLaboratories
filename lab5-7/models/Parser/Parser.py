@@ -149,17 +149,14 @@ class Parser:
         #     print(item)
 
     def parseSequence(self, w):
-        alfa = []
-        alfa.append("$")
+        alfa = ["$"]
         w.reverse()
         for elem in w:
             if elem == "ɛ":
                 alfa.append("$")
             else:
                 alfa.append(elem)
-        beta = []
-        beta.append("$")
-        beta.append(self.grammar.getStartingSymbol()[0])
+        beta = ["$", self.grammar.getStartingSymbol()[0]]
         pi = []
         go = True
         try:
