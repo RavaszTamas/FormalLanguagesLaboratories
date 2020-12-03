@@ -1,19 +1,17 @@
 Kezd
-	egesz a,b, c;
-	beolvas a;
-	beolvas b;
+	egesz a,b,c;
+	olvas(a);
+	olvas(b);
 	amig ( a nemegyenlo 0 ){
 		ures kapja second_number;
 		second_number kapja first_number modulo second_number;
-		first_number kapja ures;
-	}
-	erdemeny first_number
+		first_number kapja ures
+	};
 
 	ha(a egyenlo 1){
-		kiir("relative primes");
-		kiir('\'');
+		kiir("relative primes")
 	}
 	kulonben{
-		kiir("not relative primes");
+		kiir("not relative primes")
 	}
 Vegez

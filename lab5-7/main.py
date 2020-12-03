@@ -1,3 +1,5 @@
+import codecs
+
 from models.FA.FiniteAutomata import FiniteAutomata
 from models.Grammar.Grammar import Grammar
 from models.Parser.Parser import Parser
@@ -28,7 +30,6 @@ def scanTheFile(file_name_to_read=None):
     with open(file_name_to_read, 'r') as file:
         for line in file:
             tokens = [token for token in scanner.token_generator(line, line_index)]
-            print(tokens)
             for token in tokens:
                 if token in all_items:
                     pif.add(token, -1)
@@ -113,11 +114,13 @@ def print_grammar_menu():
 
 def readTheGrammar():
 
-    file_name = input("Enter the name of the file containing the grammar:")
-    grammar = Grammar.fromFile(file_name)
+    file_name_grammar = input("Enter the name of the file containing the grammar:")
+    grammar = Grammar.fromFile(file_name_grammar)
     while True:
         print_grammar_menu()
         user_input = input("Enter the command:").strip()
+        if user_input == "0":
+            return
         if user_input == "1":
             print(grammar.E)
         elif user_input == "2":
@@ -129,15 +132,39 @@ def readTheGrammar():
             print(grammar.getProductsForNonTerminal(inputNonterminal))
         elif user_input == "5":
             print(grammar.getStartingSymbol()[0])
-        elif user_input == "5":
+        elif user_input == "6":
             filname = input("Enter the name of the file:")
+            scanTheFile(filname)
+            parser = Parser(grammar)
+            sequence = []
+            with open("PIF.out", 'r') as file:
+                for line in file:
+                    elems = line.strip().split()
+                    if elems[0] == "1":
+                        if file_name_grammar == "g1.txt":
+                            sequence.append("a")
+                        else:
+                            sequence.append("identifier")
+                    elif elems[0] == "0":
+                        sequence.append("constant")
+                    else:
+                        sequence.append(elems[0])
+            # print(sequence)
+            output = parser.parseSequence(sequence)
+            outFileName = "out.txt"
+            if file_name_grammar == "g1.txt":
+                outFileName = "out1.txt"
+            elif file_name_grammar == "g2.txt":
+                outFileName = "out2.txt"
 
+            with codecs.open(outFileName,'wb',encoding='utf8') as file:
+                file.write(str(output))
 
 def main():
 
     while True:
         print(
-            "Enter 1 to parse any automata\nEnter 2 to perform scanning using the pre-existing automatas\nEnter 3 to preform a reading of a grammar\nEnter 0 to "
+            "Enter 1 to parse any automata\nEnter 2 to perform scanning using the pre-existing automatas\nEnter 3 to preform a reading of a grammar and parsing of a file\nEnter 0 to "
             "exit")
         user_input = input(">>>").strip()
         if user_input == "1":
@@ -151,7 +178,23 @@ def main():
 
 
 if __name__ == '__main__':
-    grammar = Grammar.fromFile("g1.txt")
-    parser = Parser(grammar)
-    parser.parseSequence(["a","*","(","a","+","a",")"])
-    # main()
+    # scanTheFile("p3.txt")
+    # grammar = Grammar.fromFile("g2.txt")
+    # parser = Parser(grammar)
+    # sequence = []
+    # with open("PIF.out", 'r') as file:
+    #     for line in file:
+    #         elems = line.strip().split()
+    #         if elems[0] == "1":
+    #             sequence.append("identifier")
+    #         elif elems[0] == "0":
+    #             sequence.append("constant")
+    #         else:
+    #             sequence.append(elems[0])
+    # print(sequence)
+    # print(parser.parseSequence(sequence))
+    # grammar = Grammar.fromFile("g1.txt")
+    # parser = Parser(grammar)
+    # output = parser.parseSequence(['a', '*', '(', 'a', '+', 'a', ')'])
+
+    main()

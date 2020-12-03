@@ -1,0 +1,197 @@
+Node 2: compoundstatement Father:1 Sibling:  None 
+Node 1: program Father: None  Sibling:  None 
+Node 4: Kezd Father:3 Sibling:  None 
+Node 5: statementlist Father:3 Sibling: 4
+Node 6: Vegez Father:3 Sibling: 5
+Node 3: compoundstatement Father: None  Sibling:  None 
+Node 8: statement Father:7 Sibling:  None 
+Node 9: nextstatement Father:7 Sibling: 8
+Node 7: statementlist Father:32 Sibling:  None 
+Node 11: declarationlist Father:10 Sibling:  None 
+Node 10: statement Father:34 Sibling:  None 
+Node 13: type Father:12 Sibling:  None 
+Node 14: identifierList Father:12 Sibling: 13
+Node 12: declarationlist Father: None  Sibling:  None 
+Node 16: egesz Father:15 Sibling:  None 
+Node 15: type Father: None  Sibling:  None 
+Node 18: identifier Father:17 Sibling:  None 
+Node 19: nextidentifier Father:17 Sibling: 18
+Node 17: identifierList Father: None  Sibling:  None 
+Node 21: , Father:20 Sibling:  None 
+Node 22: identifier Father:20 Sibling: 21
+Node 23: nextidentifier Father:20 Sibling: 22
+Node 20: nextidentifier Father:24 Sibling:  None 
+Node 25: , Father:24 Sibling:  None 
+Node 26: identifier Father:24 Sibling: 25
+Node 24: nextidentifier Father:27 Sibling:  None 
+Node 28: , Father:27 Sibling:  None 
+Node 29: identifier Father:27 Sibling: 28
+Node 27: nextidentifier Father: None  Sibling:  None 
+Node 31: ɛ Father:30 Sibling:  None 
+Node 30: nextidentifier Father: None  Sibling:  None 
+Node 33: ; Father:32 Sibling:  None 
+Node 32: nextstatement Father:34 Sibling:  None 
+Node 34: statementlist Father:46 Sibling:  None 
+Node 36: simplestatement Father:35 Sibling:  None 
+Node 35: statement Father:48 Sibling:  None 
+Node 38: iostatement Father:37 Sibling:  None 
+Node 37: simplestatement Father:49 Sibling:  None 
+Node 40: olvas Father:39 Sibling:  None 
+Node 41: ( Father:39 Sibling: 40
+Node 42: value Father:39 Sibling: 41
+Node 43: ) Father:39 Sibling: 42
+Node 39: iostatement Father:50 Sibling:  None 
+Node 45: identifier Father:44 Sibling:  None 
+Node 44: value Father:51 Sibling:  None 
+Node 47: ; Father:46 Sibling:  None 
+Node 46: nextstatement Father:48 Sibling:  None 
+Node 48: statementlist Father:57 Sibling:  None 
+Node 49: statement Father:59 Sibling:  None 
+Node 50: simplestatement Father:60 Sibling:  None 
+Node 52: olvas Father:51 Sibling:  None 
+Node 53: ( Father:51 Sibling: 52
+Node 54: ) Father:51 Sibling: 53
+Node 51: iostatement Father:61 Sibling:  None 
+Node 56: identifier Father:55 Sibling:  None 
+Node 55: value Father:62 Sibling:  None 
+Node 58: ; Father:57 Sibling:  None 
+Node 57: nextstatement Father:59 Sibling:  None 
+Node 59: statementlist Father:68 Sibling:  None 
+Node 60: statement Father:70 Sibling:  None 
+Node 61: simplestatement Father:109 Sibling:  None 
+Node 63: olvas Father:62 Sibling:  None 
+Node 64: ( Father:62 Sibling: 63
+Node 65: ) Father:62 Sibling: 64
+Node 62: iostatement Father:189 Sibling:  None 
+Node 67: identifier Father:66 Sibling:  None 
+Node 66: value Father:190 Sibling:  None 
+Node 69: ; Father:68 Sibling:  None 
+Node 68: nextstatement Father:70 Sibling:  None 
+Node 70: statementlist Father:140 Sibling:  None 
+Node 72: structuredtatement Father:71 Sibling:  None 
+Node 71: statement Father:75 Sibling:  None 
+Node 74: ifstatement Father:73 Sibling:  None 
+Node 73: structuredtatement Father:143 Sibling:  None 
+Node 76: ha Father:75 Sibling:  None 
+Node 77: ( Father:75 Sibling: 76
+Node 78: condition Father:75 Sibling: 77
+Node 79: ) Father:75 Sibling: 78
+Node 80: { Father:75 Sibling: 79
+Node 81: } Father:75 Sibling: 80
+Node 82: elsepart Father:75 Sibling: 81
+Node 75: ifstatement Father:144 Sibling:  None 
+Node 84: expression Father:83 Sibling:  None 
+Node 85: relation Father:83 Sibling: 84
+Node 86: expression Father:83 Sibling: 85
+Node 83: condition Father:145 Sibling:  None 
+Node 88: term Father:87 Sibling:  None 
+Node 89: expressiontail Father:87 Sibling: 88
+Node 87: expression Father:112 Sibling:  None 
+Node 91: factor Father:90 Sibling:  None 
+Node 92: termtail Father:90 Sibling: 91
+Node 90: term Father:101 Sibling:  None 
+Node 94: identifier Father:93 Sibling:  None 
+Node 93: factor Father:102 Sibling:  None 
+Node 96: ɛ Father:95 Sibling:  None 
+Node 95: termtail Father:102 Sibling:  None 
+Node 98: ɛ Father:97 Sibling:  None 
+Node 97: expressiontail Father:101 Sibling:  None 
+Node 100: nagyobb Father:99 Sibling:  None 
+Node 99: relation Father:151 Sibling:  None 
+Node 101: expression Father:129 Sibling:  None 
+Node 102: term Father:115 Sibling:  None 
+Node 104: identifier Father:103 Sibling:  None 
+Node 103: factor Father:116 Sibling:  None 
+Node 106: ɛ Father:105 Sibling:  None 
+Node 105: termtail Father:116 Sibling:  None 
+Node 108: ɛ Father:107 Sibling:  None 
+Node 107: expressiontail Father:115 Sibling:  None 
+Node 109: statement Father:123 Sibling:  None 
+Node 111: assignment Father:110 Sibling:  None 
+Node 110: simplestatement Father:127 Sibling:  None 
+Node 113: identifier Father:112 Sibling:  None 
+Node 114: kapja Father:112 Sibling: 113
+Node 112: assignment Father:128 Sibling:  None 
+Node 115: expression Father:151 Sibling:  None 
+Node 116: term Father:132 Sibling:  None 
+Node 118: identifier Father:117 Sibling:  None 
+Node 117: factor Father:133 Sibling:  None 
+Node 120: ɛ Father:119 Sibling:  None 
+Node 119: termtail Father:133 Sibling:  None 
+Node 122: ɛ Father:121 Sibling:  None 
+Node 121: expressiontail Father:132 Sibling:  None 
+Node 124: kulonben Father:123 Sibling:  None 
+Node 125: { Father:123 Sibling: 124
+Node 126: } Father:123 Sibling: 125
+Node 123: elsepart Father:145 Sibling:  None 
+Node 127: statement Father:142 Sibling:  None 
+Node 128: simplestatement Father:170 Sibling:  None 
+Node 130: identifier Father:129 Sibling:  None 
+Node 131: kapja Father:129 Sibling: 130
+Node 129: assignment Father:171 Sibling:  None 
+Node 132: expression Father:151 Sibling:  None 
+Node 133: term Father:152 Sibling:  None 
+Node 135: identifier Father:134 Sibling:  None 
+Node 134: factor Father:153 Sibling:  None 
+Node 137: ɛ Father:136 Sibling:  None 
+Node 136: termtail Father:153 Sibling:  None 
+Node 139: ɛ Father:138 Sibling:  None 
+Node 138: expressiontail Father:152 Sibling:  None 
+Node 141: ; Father:140 Sibling:  None 
+Node 140: nextstatement Father:142 Sibling:  None 
+Node 142: statementlist Father:185 Sibling:  None 
+Node 143: statement Father:145 Sibling:  None 
+Node 144: structuredtatement Father: None  Sibling:  None 
+Node 146: ha Father:145 Sibling:  None 
+Node 147: ( Father:145 Sibling: 146
+Node 148: ) Father:145 Sibling: 147
+Node 149: { Father:145 Sibling: 148
+Node 150: } Father:145 Sibling: 149
+Node 145: ifstatement Father: None  Sibling:  None 
+Node 151: condition Father: None  Sibling:  None 
+Node 152: expression Father:172 Sibling:  None 
+Node 153: term Father:162 Sibling:  None 
+Node 155: identifier Father:154 Sibling:  None 
+Node 154: factor Father:163 Sibling:  None 
+Node 157: ɛ Father:156 Sibling:  None 
+Node 156: termtail Father:163 Sibling:  None 
+Node 159: ɛ Father:158 Sibling:  None 
+Node 158: expressiontail Father:162 Sibling:  None 
+Node 161: nagyobb Father:160 Sibling:  None 
+Node 160: relation Father: None  Sibling:  None 
+Node 162: expression Father: None  Sibling:  None 
+Node 163: term Father:175 Sibling:  None 
+Node 165: identifier Father:164 Sibling:  None 
+Node 164: factor Father:176 Sibling:  None 
+Node 167: ɛ Father:166 Sibling:  None 
+Node 166: termtail Father:176 Sibling:  None 
+Node 169: ɛ Father:168 Sibling:  None 
+Node 168: expressiontail Father:175 Sibling:  None 
+Node 170: statement Father:187 Sibling:  None 
+Node 171: simplestatement Father:188 Sibling:  None 
+Node 173: identifier Father:172 Sibling:  None 
+Node 174: kapja Father:172 Sibling: 173
+Node 172: assignment Father: None  Sibling:  None 
+Node 175: expression Father: None  Sibling:  None 
+Node 176: term Father: None  Sibling:  None 
+Node 178: identifier Father:177 Sibling:  None 
+Node 177: factor Father: None  Sibling:  None 
+Node 180: ɛ Father:179 Sibling:  None 
+Node 179: termtail Father: None  Sibling:  None 
+Node 182: ɛ Father:181 Sibling:  None 
+Node 181: expressiontail Father: None  Sibling:  None 
+Node 184: ɛ Father:183 Sibling:  None 
+Node 183: elsepart Father: None  Sibling:  None 
+Node 186: ; Father:185 Sibling:  None 
+Node 185: nextstatement Father:187 Sibling:  None 
+Node 187: statementlist Father: None  Sibling:  None 
+Node 188: statement Father: None  Sibling:  None 
+Node 189: simplestatement Father: None  Sibling:  None 
+Node 191: kiir Father:190 Sibling:  None 
+Node 192: ( Father:190 Sibling: 191
+Node 193: ) Father:190 Sibling: 192
+Node 190: iostatement Father: None  Sibling:  None 
+Node 195: identifier Father:194 Sibling:  None 
+Node 194: value Father: None  Sibling:  None 
+Node 197: ɛ Father:196 Sibling:  None 
+Node 196: nextstatement Father: None  Sibling:  None 

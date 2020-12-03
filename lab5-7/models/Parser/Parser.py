@@ -113,18 +113,20 @@ class Parser:
 
     def generateParseTable(self):
         for production in self.grammar.getEnumerated():
-            elements = production[0][1].split()
-            firstSet = self.firstSet[elements[0]]
+            rules = production[0][1].split()
+            firstSet = self.firstSet[rules[0]]
+            # print(production)
+            # print("first",firstSet)
             for element in firstSet:
-
                 if element != "ɛ":
                     if (production[0][0], element) not in self.parseTable:
                         self.parseTable[(production[0][0], element)] = (production[0][1], production[1])
                     else:
-                        raise ValueError("Conflict at (" + str(production[0][0])+","+ str(element) + ") " + str(self.parseTable[
-                            (production[0][0], element)]) + ":" + str((production[0][1], production[1])))
+                        raise ValueError("Conflict at ( " + str(production[0][0])+" , "+ str(element) + " ) " + str(self.parseTable[
+                            (production[0][0], element)]) + " : " + str((production[0][1], production[1])))
                 else:
                     followSetOfItem = self.followSet[production[0][0]]
+                    # print("follow",followSetOfItem)
                     for followElement in followSetOfItem:
                         if (production[0][0], followElement) not in self.parseTable:
                             if followElement == "ɛ":
@@ -132,8 +134,8 @@ class Parser:
                             else:
                                 self.parseTable[(production[0][0],followElement)] = (production[0][1], production[1])
                         else:
-                            raise ValueError("Conflict at (" + str(production[0][0]) + "," + str(element) + ") " + str(
-                                self.parseTable[(production[0][0], element)]) + ":" + str((production[0][1], production[1])))
+                            raise ValueError("Conflict at ( " + str(production[0][0]) + " , " + str(followElement) + " ) " + str(
+                                self.parseTable[(production[0][0], followElement)]) + " : " + str((production[0][1], production[1])))
 
         for terminal in self.grammar.getTerminals():
             if terminal == "ɛ":
@@ -177,11 +179,9 @@ class Parser:
                             beta.append(item)
                     pi.append(elem[1])
         except KeyError:
-            raise KeyError("Not an LL(1) grammar")
+            raise KeyError("Not a valid sequence")
 
         output = ParserOutput(self.grammar)
-        print(pi)
         output.constructTree(pi)
-        print(output)
-        return pi
+        return output
 

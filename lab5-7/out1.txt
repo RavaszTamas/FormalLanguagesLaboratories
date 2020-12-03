@@ -1,0 +1,35 @@
+Node 2: B Father:1 Sibling:  None 
+Node 3: A Father:1 Sibling: 2
+Node 1: S Father:12 Sibling:  None 
+Node 5: D Father:4 Sibling:  None 
+Node 6: C Father:4 Sibling: 5
+Node 4: B Father:15 Sibling:  None 
+Node 8: a Father:7 Sibling:  None 
+Node 7: D Father:9 Sibling:  None 
+Node 10: * Father:9 Sibling:  None 
+Node 11: C Father:9 Sibling: 10
+Node 9: C Father:17 Sibling:  None 
+Node 13: ( Father:12 Sibling:  None 
+Node 14: ) Father:12 Sibling: 13
+Node 12: D Father:17 Sibling:  None 
+Node 16: A Father:15 Sibling:  None 
+Node 15: S Father: None  Sibling:  None 
+Node 17: B Father:22 Sibling:  None 
+Node 19: a Father:18 Sibling:  None 
+Node 18: D Father:25 Sibling:  None 
+Node 21: ɛ Father:20 Sibling:  None 
+Node 20: C Father:25 Sibling:  None 
+Node 23: + Father:22 Sibling:  None 
+Node 24: A Father:22 Sibling: 23
+Node 22: A Father: None  Sibling:  None 
+Node 25: B Father: None  Sibling:  None 
+Node 27: a Father:26 Sibling:  None 
+Node 26: D Father: None  Sibling:  None 
+Node 29: ɛ Father:28 Sibling:  None 
+Node 28: C Father: None  Sibling:  None 
+Node 31: ɛ Father:30 Sibling:  None 
+Node 30: A Father: None  Sibling:  None 
+Node 33: ɛ Father:32 Sibling:  None 
+Node 32: C Father: None  Sibling:  None 
+Node 35: ɛ Father:34 Sibling:  None 
+Node 34: A Father: None  Sibling:  None 

@@ -1,30 +1,42 @@
-N = "program" | "relation" |"identifierList" | "additive" | "multiplicative" | "compoundstatement" | "statementlist" | "statement" | "declarationlist" | "type" | "primarytypes" | "arraytype" | "simplestatement" | "assignment" | "expression" | "term" | "factor" | "operation" | "iostatement" | "structuredtatement" | "ifstatement" | "condition" | "whilestatement" | "forstatement" | "switchstmt" | "casestatement"
-E = "Kezd" | "{" | "}" | "identifier" | ":" | "," | "integer" | "olvas" | "kiir" | "ha" | "kulonben" | "allj" | "valassz" | "eset" | "ismeteld" | "amig" | "constant" | "Vegez" | "default" | ";" | "," | "egesz" | "dupla" | "karakter" | "boolean" | "(" | ")" | "[" | "]" | "kapja" | "osszead" | "kivon" | "szoroz" | "oszt" | "modulo" | "nemegyenlo" | "egyenlo" | "nagyobbvagyegyenlo" | "kisebbvagyegyenlo" | "kisebb" | "nagyobb"
+N = "program" | "value" | "termtail" | "expressiontail" | "nextidentifier" |"nextstatement" | "elsepart" | "relation" |"identifierList" | "additive" | "multiplicative" | "compoundstatement" | "statementlist" | "statement" | "declarationlist" | "type"  | "simplestatement" | "assignment" | "expression" | "term" | "factor" | "iostatement" | "structuredtatement" | "ifstatement" | "condition" | "whilestatement" | "forstatement"
+E = "Kezd" |"karakterlanc" | "{" | "}" | "ɛ" | "identifier" | ":" | "," | "integer" | "olvas" | "kiir" | "ha" | "kulonben" | "ismeteld" | "amig" | "constant" | "Vegez" | ";" | "," | "egesz" | "dupla" | "karakter" | "boolean" | "(" | ")" | "[" | "]" | "kapja" | "osszead" | "kivon" | "szoroz" | "oszt" | "modulo" | "nemegyenlo" | "egyenlo" | "nagyobbvagyegyenlo" | "kisebbvagyegyenlo" | "kisebb" | "nagyobb"
 S = "program"
 P =
 program -> compoundstatement
 compoundstatement -> Kezd statementlist Vegez
-statementlist -> statement ; | statementlist
+statementlist -> statement nextstatement
+nextstatement -> ; statementlist | ɛ
+
 statement -> declarationlist | simplestatement | structuredtatement
-declarationlist -> type identifierList ;
-identifierList -> identifier , identifierList | identifier
-type -> primarytypes | arraytype
-primarytypes -> egesz | dupla | karakter | boolean
-arraytype -> primarytypes [ integer ]
+
+declarationlist -> type identifierList
+identifierList -> identifier nextidentifier
+nextidentifier -> , identifier nextidentifier | ɛ
+type ->  egesz | dupla | karakter | karakterlanc | boolean
+
 simplestatement -> assignment | iostatement
-assignment -> identifier kapja expression ;
-expression -> expression additive term | term
-term -> term multiplicative factor  | factor
-factor -> ( expression ) | identifier
-operation -> additive | multiplicative
+
+assignment -> identifier kapja expression
+expression -> term expressiontail
+expressiontail -> additive term expressiontail | ɛ
+term -> factor termtail
+termtail -> multiplicative factor termtail | ɛ
+factor -> ( expression ) | identifier | constant
 additive -> osszead | kivon
 multiplicative -> oszt | szoroz |  modulo
-iostatement -> olvas  identifier ; | kiir identifier ;
-structuredtatement -> ifstatement | whilestatement | forstatement | switchstmt | casestatement
-ifstatement -> ha  ( condition ) { statement } | ha  ( condition ) { statement } kulonben { statement }
+
+
+iostatement -> olvas ( value ) | kiir ( value )
+value -> identifier | constant
+
+structuredtatement -> ifstatement | whilestatement | forstatement
+
+ifstatement -> ha  ( condition ) { statement } elsepart
+elsepart -> kulonben { statement } | ɛ
 condition -> expression relation expression
+
 whilestatement -> amig ( condition ) { statementlist }
+
 forstatement -> ismeteld ( statement ; statement ; statement ) { statement }
-switchstmt -> valassz ( condition ) casestatement { casestatement } default : statementlist
-casestatement -> eset : statementlist allj ;
+
 relation -> nemegyenlo | egyenlo | nagyobbvagyegyenlo | kisebbvagyegyenlo | kisebb | nagyobb

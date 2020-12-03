@@ -17,6 +17,9 @@ class Grammar:
         enumerated = []
         index = 1
         for rule in linesOfRules:
+            rule.strip()
+            if rule == "":
+                continue
             lhs, rhs = rule.split('->')
             lhs = lhs.strip()
             rhs = [value.strip() for value in rhs.split('|')]
