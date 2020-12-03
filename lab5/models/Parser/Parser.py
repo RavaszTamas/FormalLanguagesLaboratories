@@ -137,6 +137,7 @@ class Parser:
             print(item)
 
     def parseSequence(self, w):
+        #ordering of the sequence items should be different, because the input stack the input and the pi might be reversed in the result
         alfa = []
         alfa.append("$")
         for elem in w:
