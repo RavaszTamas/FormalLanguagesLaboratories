@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\ravas\Documents\UBB\CompNet\lab5\venv
+set VIRTUAL_ENV=C:\Users\ravas\Documents\UBB\FLCD_github\FormalLanguagesLaboratories\lab5-7\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
