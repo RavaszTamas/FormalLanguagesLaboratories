@@ -1,0 +1,9 @@
+Kezd
+
+	karakterlanc result_string,first_string,second_string;
+	olvas(first_string);
+	olvas(second_string);
+	result_string kapja first_string osszead second_string;
+	kiir(result_string)
+
+Vegez
