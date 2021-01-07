@@ -1,0 +1,71 @@
+%{ 	 
+#include <math.h> 
+#include <stdio.h>
+#include "y.tab.h"
+int current_line = 0;
+
+%}
+
+%option noyywrap
+
+DIGIT 		[0-9]
+STRING		\".*\"
+INTEGER		[-+]?[1-9][0-9]*|0
+REAL_NUMBER		{INTEGER}+"."{DIGIT}*
+CONSTANT_VALUE		{STRING}|{INTEGER}|{REAL_NUMBER}
+IDENTIFIER 		[a-zA-Z][a-zA-Z0-9_]{0,256}
+
+%% 
+
+"osszead"	{printf( "Reserved word: %s\n", yytext );return osszead;}
+"kivon"	{printf( "Reserved word: %s\n", yytext );return kivon;}
+"szoroz"	{printf( "Reserved word: %s\n", yytext );return szoroz;}
+"oszt"	{printf( "Reserved word: %s\n", yytext );return oszt;}
+"modulo"	{printf( "Reserved word: %s\n", yytext );return modulo;}
+"kisebb"	{printf( "Reserved word: %s\n", yytext );return kisebb;}
+"kisebbvagyegyenlo"	{printf( "Reserved word: %s\n", yytext );return kisebbvagyegyenlo;}
+"egyenlo"	{printf( "Reserved word: %s\n", yytext );return egyenlo;}
+"nagyobbvagyegyenlo"	{printf( "Reserved word: %s\n", yytext );return nagyobbvagyegyenlo;}
+"nagyobb"	{printf( "Reserved word: %s\n", yytext );return nagyobb;}
+"nemegyenlo"	{printf( "Reserved word: %s\n", yytext );return nemegyenlo;}
+"novel"	{printf( "Reserved word: %s\n", yytext );return novel;}
+"csokken"	{printf( "Reserved word: %s\n", yytext );return csokken;}
+"kapja"	{printf( "Reserved word: %s\n", yytext );return kapja;}
+"ha"	{printf( "Reserved word: %s\n", yytext );return ha;}
+"kulonben"	{printf( "Reserved word: %s\n", yytext );return kulonben;}
+"karakter"	{printf( "Reserved word: %s\n", yytext );return karakter;}
+"karakterlanc"	{printf( "Reserved word: %s\n", yytext );return karakterlanc;}
+"amig"	{printf( "Reserved word: %s\n", yytext );return amig;}
+"boolean"	{printf( "Reserved word: %s\n", yytext );return boolean;}
+"egesz"	{printf( "Reserved word: %s\n", yytext );return egesz;}
+"tomb"	{printf( "Reserved word: %s\n", yytext );return tomb;}
+"dupla"	{printf( "Reserved word: %s\n", yytext );return dupla;}
+"visszater"	{printf( "Reserved word: %s\n", yytext );return visszater;}
+"ismeteld"	{printf( "Reserved word: %s\n", yytext );return ismeteld;}
+"Kezd"	{printf( "Reserved word: %s\n", yytext );return Kezd;}
+"Vegez"	{printf( "Reserved word: %s\n", yytext );return Vegez;}
+"allj"	{printf( "Reserved word: %s\n", yytext );return allj;}
+"valassz"	{printf( "Reserved word: %s\n", yytext );return valassz;}
+"eset"	{printf( "Reserved word: %s\n", yytext );return eset;}
+"alapertelmezett"	{printf( "Reserved word: %s\n", yytext ); return alapertelmezett;}
+"konstans"	{printf( "Reserved word: %s\n", yytext ); return konstans;}
+"olvas"	{printf( "Reserved word: %s\n", yytext ); return olvas;}
+"kiir"	{printf( "Reserved word: %s\n", yytext ); return kiir;}
+{IDENTIFIER}	{printf( "Identifier: %s\n", yytext ); return ID;}
+{CONSTANT_VALUE}	{printf( "Constant: %s\n", yytext ); return CONST;}
+"["	{printf( "Separator: %s\n", yytext );return open_square_bracket;}
+"]"	{printf( "Separator: %s\n", yytext );return closed_square_bracket;}
+"{"	{printf( "Separator: %s\n", yytext );return open_curly_bracket;}
+"}"	{printf( "Separator: %s\n", yytext );return closed_curly_bracket;}
+"("	{printf( "Separator: %s\n", yytext );return open_bracket;}
+")"	{printf( "Separator: %s\n", yytext );return closed_bracket;}
+";"	{printf( "Separator: %s\n", yytext );return semicolon;}
+","	{printf( "Separator: %s\n", yytext );return coma;}
+":"	{printf( "Separator: %s\n", yytext );return colon;}
+"{"[^}\n]*"}"	/* eliminate the comments in the code*/ {}
+[ \t]+	/* eliminate the spaces in the code */  	{}
+[\n]+	{++current_line;}
+[a-zA-Z][a-zA-Z0-9]{256,}	{printf("Illegal size of the identifier %s at line %d\n",yytext, current_line); return -1;}
+[0-9][a-zA-Z0-9]{0,256}	{printf("Illegal identifier %s at line %d\n",yytext, current_line); return -1;} 
+.	{printf("Illegal symbol %s at line %d\n",yytext,current_line); return -1;}
+%%  
